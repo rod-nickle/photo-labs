@@ -15,7 +15,13 @@ const sampleDataForPhotoListItem = {
 };
 
 const PhotoListItem = () => {
-  /* Insert React */
+  return (
+    <div>
+      <h2>
+        This is a PhotoListItem component.
+      </h2>
+    </div>
+  )
 };
 
 export default PhotoListItem;
