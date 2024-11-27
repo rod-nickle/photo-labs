@@ -3,23 +3,17 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 
 
-const sampleDataForPhotoListItem = {
-  id: "1",
-  location: {
-    city: "Montreal",
-    country: "Canada",
-  },
-  imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-  username: "Joe Example",
-  profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-};
-
-const PhotoListItem = () => {
+const PhotoListItem = (props) => {
+  // console.log("Props", props);
+  const photoListItem = { ...props.photoListItem };
+  // console.log("PhotoListItem", photoListItem);
   return (
-    <div>
-      <h2>
-        This is a PhotoListItem component.
-      </h2>
+    <div className="photo-list__item">
+      <h2>PhotoListItem Component</h2>
+      <img className="photo-list__image" src={photoListItem.imageSource} alt="Photo" ></img>
+      <img className="photo-list__user-profile" src={photoListItem.profile} alt="Profile" ></img>
+      <p className="photo-list__user-info"> {photoListItem.username}</p>
+      <p className="photo-list__user-location"> {photoListItem.location.city}, {photoListItem.location.country}</p>
     </div>
   )
 };
