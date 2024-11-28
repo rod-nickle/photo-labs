@@ -7,9 +7,7 @@ import "../styles/TopicListItem.scss";
 //   label: "Nature",
 // };
 
-const TopicListItem = (props) => {
-  const {title} = props.topicListItem;
-
+const TopicListItem = ({ title }) => {
   return (
     <div className="topic-list__item">
       <span>{title} </span>
