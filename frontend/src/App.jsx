@@ -5,15 +5,22 @@ import topics from "mocks/topics";
 import HomeRoute from './components/HomeRoute';
 
 const App = () => {
-  const [favouritePhotoCount, setFavouritePhotocount] = useState(0);
+  const [favouritePhotos, setFavouritePhotos] = useState({});
 
-  const incrementFavouritePhotoCount = (increment) => {
-    setFavouritePhotocount(favouritePhotoCount + increment);
+  const toggleFavouritePhoto = (photoId) => {
+    const newFavouritePhotos = { ...favouritePhotos};
+
+    if (newFavouritePhotos[photoId]) {
+      delete newFavouritePhotos[photoId];
+    } else {
+      newFavouritePhotos[photoId] = true;
+    }
+    setFavouritePhotos(newFavouritePhotos);
   };
 
   return (
     <div className="App">
-      <HomeRoute photos={photos} topics={topics} favouritePhotoCount={favouritePhotoCount} incrementFavouritePhotoCount={incrementFavouritePhotoCount} />
+      <HomeRoute photos={photos} topics={topics} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} />
     </div>
   );
 };

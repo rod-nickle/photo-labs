@@ -4,12 +4,12 @@ import TopNavigation from './TopNavigationBar';
 import PhotoList from './PhotoList';
 
 const HomeRoute = (props) => {
-  const { photos, favouritePhotoCount, incrementFavouritePhotoCount } = props;
+  const { photos, favouritePhotos, toggleFavouritePhoto } = props;
 
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics} favouritePhotoCount={favouritePhotoCount} />
-      <PhotoList photos={photos} incrementFavouritePhotoCount={incrementFavouritePhotoCount} />
+      <TopNavigation topics={props.topics} favouritePhotos={favouritePhotos} />
+      <PhotoList photos={photos} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} />
     </div>
   )
 }
