@@ -16,7 +16,7 @@ const sampleDataForPhotoList = [
     user: {
       id: "1",
       username: "exampleuser",
-      name: "Joe Example",
+      name: "Joe Example1",
       profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
     },
   },
@@ -33,7 +33,7 @@ const sampleDataForPhotoList = [
     user: {
       id: "2",
       username: "exampleuser",
-      name: "Joe Example",
+      name: "Joe Example2",
       profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
     },
   },
@@ -50,7 +50,7 @@ const sampleDataForPhotoList = [
     user: {
       id: "3",
       username: "exampleuser",
-      name: "Joe Example",
+      name: "Joe Example3",
       profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
     },
   },
@@ -59,9 +59,8 @@ const sampleDataForPhotoList = [
 const PhotoList = () => {
   return (
     <ul className="photo-list">
-      {/* <h2>This is the PhotoList component.</h2> */}
-      {sampleDataForPhotoList.map((photoListItem, index) => {
-        return <PhotoListItem key={index} photoListItem={photoListItem} />;
+      {sampleDataForPhotoList.map((photoListItem) => {
+        return <PhotoListItem key={photoListItem.id} photoListItem={photoListItem} />;
       })}
     </ul>
   );

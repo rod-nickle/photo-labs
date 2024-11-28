@@ -6,7 +6,7 @@ const PhotoListItem = (props) => {
   const photoListItem = { ...props.photoListItem };
 
   return (
-    <figure key={photoListItem.id} className="photo-list__item">
+    <figure className="photo-list__item">
       <PhotoFavButton />
       <img className="photo-list__image" src={photoListItem.urls.regular} alt="Photo" />
       <figcaption className="photo-list__user-details">
