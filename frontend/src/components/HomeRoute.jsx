@@ -5,10 +5,11 @@ import PhotoList from './PhotoList';
 
 const HomeRoute = (props) => {
   const { photos, favouritePhotos, toggleFavouritePhoto } = props;
+  const isFavPhotoExist = Object.keys(favouritePhotos).length > 0 ? true : false;
 
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics} favouritePhotos={favouritePhotos} />
+      <TopNavigation topics={props.topics} isFavPhotoExist={isFavPhotoExist} />
       <PhotoList photos={photos} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} />
     </div>
   )
