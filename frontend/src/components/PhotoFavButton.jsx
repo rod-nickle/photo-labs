@@ -5,12 +5,6 @@ import '../styles/PhotoFavButton.scss';
 function PhotoFavButton(props) {
   const [favouriteSelected, setfavouriteSelected] = useState(false);
 
-  // let displayAlert = false;
-
-  // const handleClick = () => {
-  //   setfavouriteSelected(!favouriteSelected);
-  // };
-
   const handleClick = () => {
     setfavouriteSelected(prev => !prev);
   };
