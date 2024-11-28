@@ -4,9 +4,12 @@ import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
   const [favouriteSelected, setfavouriteSelected] = useState(false);
+  const { incrementFavouritePhotoCount } = props;
 
   const handleClick = () => {
-    setfavouriteSelected(prev => !prev);
+    const newState = !favouriteSelected
+    incrementFavouritePhotoCount(newState ? 1 : -1);
+    setfavouriteSelected(newState);
   };
 
   return (

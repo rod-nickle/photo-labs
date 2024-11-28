@@ -3,7 +3,7 @@ import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
 const TopicList = (props) => {
-  const topics = [ ...props.topics ];
+  const { topics } = props;
 
   return (
     <div className="top-nav-bar__topic-list">

@@ -3,17 +3,17 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from './PhotoFavButton';
 
 const PhotoListItem = (props) => {
-  const photoListItem = { ...props.photoListItem };
+  const { photo, incrementFavouritePhotoCount } = props;
 
   return (
     <figure className="photo-list__item">
-      <PhotoFavButton />
-      <img className="photo-list__image" src={photoListItem.urls.regular} alt="Photo" />
+      <PhotoFavButton incrementFavouritePhotoCount={incrementFavouritePhotoCount} />
+      <img className="photo-list__image" src={photo.urls.regular} alt="Photo" />
       <figcaption className="photo-list__user-details">
-        <img className="photo-list__user-profile" src={photoListItem.user.profile} alt={`Profile picture of ${photoListItem.user.name}`} />
+        <img className="photo-list__user-profile" src={photo.user.profile} alt={`Profile picture of ${photo.user.name}`} />
         <section>
-          <p className="photo-list__user-info">{photoListItem.user.name}</p>
-          <p className="photo-list__user-location"> {photoListItem.location.city}, {photoListItem.location.country} </p>
+          <p className="photo-list__user-info">{photo.user.name}</p>
+          <p className="photo-list__user-location"> {photo.location.city}, {photo.location.country} </p>
         </section>
       </figcaption>
     </figure>
