@@ -6,7 +6,7 @@ const PhotoListItem = (props) => {
   const { photo, favouritePhotos, toggleFavouritePhoto, togglePhotoDetailsModal } = props;
 
   const handleClick = () => {
-    togglePhotoDetailsModal();
+    togglePhotoDetailsModal(photo);
   };
 
   return (

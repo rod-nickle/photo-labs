@@ -3,8 +3,11 @@ import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = (props) => {
-  const { show, togglePhotoDetailsModal } = props;
+  const { show, photo, togglePhotoDetailsModal } = props;
   let className = "photo-details-modal " + (show ? "photo-details-modal__show" : "photo-details-modal__hide");
+
+  // TEMP
+  console.log(photo);
 
   const handleClick = () => {
     togglePhotoDetailsModal();

@@ -8,6 +8,7 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 const App = () => {
   const [favouritePhotos, setFavouritePhotos] = useState({});
   const [showPhotoDetailsModal, setShowPhotoDetailsModal] = useState(false);
+  const [photoDetails, setPhotoDetails] = useState({});
 
   const toggleFavouritePhoto = (photoId) => {
     const newFavouritePhotos = { ...favouritePhotos};
@@ -20,16 +21,19 @@ const App = () => {
     setFavouritePhotos(newFavouritePhotos);
   };
 
-  const togglePhotoDetailsModal = () => {
+  const togglePhotoDetailsModal = (photo) => {
     const newState = !showPhotoDetailsModal;
     setShowPhotoDetailsModal(newState);
+
+    const newPhotoDetails = newState ? { ...photo} : {};
+    setPhotoDetails(newPhotoDetails);
   }
   
 
   return (
     <div className="App">
       <HomeRoute photos={photos} topics={topics} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} togglePhotoDetailsModal={togglePhotoDetailsModal} />
-      <PhotoDetailsModal show={showPhotoDetailsModal} togglePhotoDetailsModal= {togglePhotoDetailsModal} />
+      <PhotoDetailsModal show={showPhotoDetailsModal} photo={photoDetails} togglePhotoDetailsModal= {togglePhotoDetailsModal} />
     </div>
   );
 };
