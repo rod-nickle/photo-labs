@@ -32,8 +32,20 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute photos={photos} topics={topics} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} togglePhotoDetailsModal={togglePhotoDetailsModal} />
-      <PhotoDetailsModal show={showPhotoDetailsModal} photo={photoDetails} togglePhotoDetailsModal= {togglePhotoDetailsModal} />
+      <HomeRoute 
+        topics={topics} 
+        photos={photos} 
+        favouritePhotos={favouritePhotos} 
+        toggleFavouritePhoto={toggleFavouritePhoto} 
+        togglePhotoDetailsModal={togglePhotoDetailsModal} 
+      />
+      <PhotoDetailsModal 
+        show={showPhotoDetailsModal} 
+        photo={photoDetails} 
+        favouritePhotos={favouritePhotos} 
+        toggleFavouritePhoto={toggleFavouritePhoto} 
+        togglePhotoDetailsModal={togglePhotoDetailsModal}
+      />
     </div>
   );
 };
