@@ -7,7 +7,7 @@ const PhotoList = (props) => {
 
   return (
     <ul className="photo-list">
-      {photos.map((photo) => {
+      {Array.isArray(photos) && photos.map((photo) => {
         return <PhotoListItem key={photo.id} photo={photo} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} togglePhotoDetailsModal={togglePhotoDetailsModal} />;
       })}
     </ul>
