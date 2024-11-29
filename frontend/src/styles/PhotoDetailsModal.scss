@@ -11,6 +11,14 @@
   border-radius: 12px;
 }
 
+.photo-details-modal__show {
+  visibility: visible;
+}
+
+.photo-details-modal__hide {
+  visibility: hidden;
+}
+
 .photo-details-modal__close-button {
   background-color: white;
   border: none;
