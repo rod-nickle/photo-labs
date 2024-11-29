@@ -1,13 +1,18 @@
 import React from 'react';
+import '../styles/HomeRoute.scss'
+import TopNavigation from '../components/TopNavigationBar';
+import PhotoList from '../components/PhotoList';
 
-import '../styles/HomeRoute.scss';
+const HomeRoute = (props) => {
+  const { photos, favouritePhotos, toggleFavouritePhoto } = props;
+  const isFavPhotoExist = Object.keys(favouritePhotos).length > 0 ? true : false;
 
-const HomeRoute = () => {
   return (
     <div className="home-route">
-      {/* Insert React */}
+      <TopNavigation topics={props.topics} isFavPhotoExist={isFavPhotoExist} />
+      <PhotoList photos={photos} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} />
     </div>
-  );
-};
+  )
+}
 
 export default HomeRoute;

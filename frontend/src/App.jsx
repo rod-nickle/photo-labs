@@ -2,7 +2,7 @@ import React, { useState }from 'react';
 import './App.scss';
 import photos from "mocks/photos";
 import topics from "mocks/topics";
-import HomeRoute from './components/HomeRoute';
+import HomeRoute from './routes/HomeRoute';
 
 const App = () => {
   const [favouritePhotos, setFavouritePhotos] = useState({});
