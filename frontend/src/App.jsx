@@ -20,13 +20,16 @@ const App = () => {
     setFavouritePhotos(newFavouritePhotos);
   };
 
-  const togglePhotoDetailsModal = () => setShowPhotoDetailsModal(true);
+  const togglePhotoDetailsModal = () => {
+    const newState = !showPhotoDetailsModal;
+    setShowPhotoDetailsModal(newState);
+  }
   
 
   return (
     <div className="App">
       <HomeRoute photos={photos} topics={topics} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} togglePhotoDetailsModal={togglePhotoDetailsModal} />
-      <PhotoDetailsModal show={showPhotoDetailsModal} />
+      <PhotoDetailsModal show={showPhotoDetailsModal} togglePhotoDetailsModal= {togglePhotoDetailsModal} />
     </div>
   );
 };
