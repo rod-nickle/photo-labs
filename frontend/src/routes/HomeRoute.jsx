@@ -5,7 +5,7 @@ import PhotoList from '../components/PhotoList';
 
 const HomeRoute = (props) => {
   const { photos, favouritePhotos, toggleFavouritePhoto, togglePhotoDetailsModal } = props;
-  const isFavPhotoExist = Object.keys(favouritePhotos).length > 0 ? true : false;
+  const isFavPhotoExist = Object.keys(favouritePhotos).length > 0;
 
   return (
     <div className="home-route">

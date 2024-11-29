@@ -39,7 +39,7 @@ const PhotoDetailsModal = (props) => {
         <PhotoFavButton photoId={photoId} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} />
         <img className="photo-details-modal__image" src={photoUrl} alt="Photo" />
         <figcaption className="photo-details-modal__photographer-details">
-          <img className="photo-details-modal__photographer-profile" src={photographerProfile} alt="Profile Picture" />
+          <img className="photo-details-modal__photographer-profile" src={photographerProfile} alt={`Profile picture of ${photographerName}`} />
           <section>
             <p className="photo-details-modal__photographer-info">{photographerName}</p>
             <p className="photo-details-modal__photographer-location"> {photographerCity}, {photographerCountry} </p>
