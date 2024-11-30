@@ -5,7 +5,7 @@ import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
-  const { show, photo, favouritePhotos, toggleFavouritePhoto, togglePhotoDetailsModal } = props;
+  const { show, photo, favouritePhotos, updateToFavPhotoIds, onClosePhotoDetailsModal } = props;
   const className = "photo-details-modal " + (show ? "photo-details-modal__show" : "photo-details-modal__hide");
 
   let photoId = null;
@@ -27,7 +27,7 @@ const PhotoDetailsModal = (props) => {
   }
 
   const handleClick = () => {
-    togglePhotoDetailsModal();
+    onClosePhotoDetailsModal();
   };
  
   return (
@@ -36,7 +36,7 @@ const PhotoDetailsModal = (props) => {
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <figure className="photo-details-modal__header">
-        <PhotoFavButton photoId={photoId} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} />
+        <PhotoFavButton photoId={photoId} favouritePhotos={favouritePhotos} updateToFavPhotoIds={updateToFavPhotoIds} />
         <img className="photo-details-modal__image" src={photoUrl} alt="Photo" />
         <figcaption className="photo-details-modal__photographer-details">
           <img className="photo-details-modal__photographer-profile" src={photographerProfile} alt={`Profile picture of ${photographerName}`} />
@@ -47,7 +47,7 @@ const PhotoDetailsModal = (props) => {
         </figcaption>
       </figure>
       <div className="photo-details-modal__images">
-        <PhotoList photos={similarPhotos} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} />
+        <PhotoList photos={similarPhotos} favouritePhotos={favouritePhotos} updateToFavPhotoIds={updateToFavPhotoIds} />
       </div>
 
     </div>

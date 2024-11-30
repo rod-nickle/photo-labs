@@ -4,50 +4,42 @@ import photos from "mocks/photos";
 import topics from "mocks/topics";
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
 
 const App = () => {
-  const [favouritePhotos, setFavouritePhotos] = useState({});
-  const [showPhotoDetailsModal, setShowPhotoDetailsModal] = useState(false);
-  const [photoDetails, setPhotoDetails] = useState({});
-
-  const toggleFavouritePhoto = (photoId) => {
-    const newFavouritePhotos = { ...favouritePhotos};
-
-    if (newFavouritePhotos[photoId]) {
-      delete newFavouritePhotos[photoId];
-    } else {
-      newFavouritePhotos[photoId] = true;
-    }
-    setFavouritePhotos(newFavouritePhotos);
+  const defaultState = {
+    favouritePhotos: [],
+    photoSelected: false,
+    selectedPhoto: {},
   };
 
-  const togglePhotoDetailsModal = (photo) => {
-    const newState = !showPhotoDetailsModal;
-    setShowPhotoDetailsModal(newState);
+  const {
+    state,
+    updateToFavPhotoIds,
+    setPhotoSelected,
+    onClosePhotoDetailsModal,
+  } = useApplicationData(defaultState);
 
-    const newPhotoDetails = newState ? { ...photo} : {};
-    setPhotoDetails(newPhotoDetails);
-  }
-  
 
   return (
     <div className="App">
       <HomeRoute 
         topics={topics} 
         photos={photos} 
-        favouritePhotos={favouritePhotos} 
-        toggleFavouritePhoto={toggleFavouritePhoto} 
-        togglePhotoDetailsModal={togglePhotoDetailsModal} 
+        favouritePhotos={state.favouritePhotos} 
+        updateToFavPhotoIds={updateToFavPhotoIds} 
+        setPhotoSelected={setPhotoSelected} 
       />
       <PhotoDetailsModal 
-        show={showPhotoDetailsModal} 
-        photo={photoDetails} 
-        favouritePhotos={favouritePhotos} 
-        toggleFavouritePhoto={toggleFavouritePhoto} 
-        togglePhotoDetailsModal={togglePhotoDetailsModal}
+        show={state.photoSelected} 
+        photo={state.selectedPhoto} 
+        favouritePhotos={state.favouritePhotos} 
+        updateToFavPhotoIds={updateToFavPhotoIds} 
+        onClosePhotoDetailsModal={onClosePhotoDetailsModal}
       />
     </div>
   );
 };
 
 export default App;
+   

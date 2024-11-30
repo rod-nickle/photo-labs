@@ -3,12 +3,12 @@ import "../styles/PhotoList.scss";
 import PhotoListItem from './PhotoListItem';
 
 const PhotoList = (props) => {
-  const { photos, favouritePhotos, toggleFavouritePhoto, togglePhotoDetailsModal} = props;
+  const { photos, favouritePhotos, updateToFavPhotoIds, setPhotoSelected} = props;
 
   return (
     <ul className="photo-list">
       {Array.isArray(photos) && photos.map((photo) => {
-        return <PhotoListItem key={photo.id} photo={photo} favouritePhotos={favouritePhotos} toggleFavouritePhoto={toggleFavouritePhoto} togglePhotoDetailsModal={togglePhotoDetailsModal} />;
+        return <PhotoListItem key={photo.id} photo={photo} favouritePhotos={favouritePhotos} updateToFavPhotoIds={updateToFavPhotoIds} setPhotoSelected={setPhotoSelected} />;
       })}
     </ul>
   );

@@ -3,15 +3,15 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-  const { photoId, favouritePhotos, toggleFavouritePhoto } = props;
+  const { photoId, favouritePhotos, updateToFavPhotoIds } = props;
   let selected = false;
 
-  if (favouritePhotos && favouritePhotos[photoId]) {
+  if (Array.isArray(favouritePhotos) && favouritePhotos.indexOf(photoId) >= 0) {
     selected = true;
   } 
 
   const handleClick = () => {
-    toggleFavouritePhoto(photoId);
+    updateToFavPhotoIds(photoId);
   };
 
   return (
