@@ -1,85 +1,72 @@
-import { useState } from "react";
+import { useReducer } from "react";
 
-/*
-const state = {
-  favouritePhotos: {},
-  photoSelected: false,
-  photoDetails: {},
+export const ACTIONS = {
+  FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
+  FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  REMOVE_PHOTO_DATA: 'REMOVE_PHOTO_DATA',
+}
+
+function reducer(state, action) {
+  
+  // console.log(state);
+  // console.log(action);
+
+  switch (action.type) {
+    case ACTIONS.FAV_PHOTO_ADDED: {
+      // Add Photo to Favourites List.
+      const newState = { ...state };
+      let favouritePhotos;
+      favouritePhotos = [ ...state.favouritePhotos, action.value]; 
+      newState.favouritePhotos = [...favouritePhotos];
+      return newState
+    }
+ 
+    case ACTIONS.FAV_PHOTO_REMOVED: {
+      // Remove Photo from Favourites List.
+      const newState = { ...state };
+      let favouritePhotos;
+      if (Array.isArray(newState.favouritePhotos) && state.favouritePhotos.includes(action.value)) {
+        favouritePhotos = newState.favouritePhotos.filter((x) => x !== action.value);
+      }
+      newState.favouritePhotos = [...favouritePhotos];
+      return newState;
+    }
+    
+    case ACTIONS.SET_PHOTO_DATA: {
+      const newState = { ...state };
+      newState.photoSelected = true;
+      newState.selectedPhoto = action.value;
+      return newState;
+    }
+    
+    case ACTIONS.REMOVE_PHOTO_DATA: {
+      const newState = { ...state };
+      newState.photoSelected = false;
+      newState.selectedPhoto = {};
+      return newState;
+    }
+
+    default:
+      throw new Error(
+        `Tried to reduce with unsupported action type: ${action.type}`
+      );
   }
-  */
+};
+
 
 /**
  * const state = {
- *  favouritePhotos: [1, 2],
- *  photoSelected: true,
- *  selectedPhoto: {
- *    "id": "1",
- *    "location": {
- *      "city": "Montreal",
- *      "country": "Canada"
- *    },
- *    "urls": {
- *      "full": `${process.env.PUBLIC_URL}/Image-1-Full.jpeg`,
- *      "regular": `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`
- *    },
- *    "user": {
- *      "id": "1",
- *      "username": "exampleuser",
- *      "name": "Joe Example",
- *      "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
- *    },
- *    similar_photos: {
- *      {photoObject1},
- *      {photoObject2},
- *    },
- *  },
+ * favouritePhotos: {},
+ * photoSelected: false,
+ * photoDetails: {},
  * }
  * @returns 
  */
 const useApplicationData = (defaultState) => {
-  const [state, setState] = useState(defaultState);
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
-  // can be used to set the favourite photos.
-  const updateToFavPhotoIds = (photoId) => {
-    const newState = { ...state };
-    let favouritePhotos;
-    
-    if (Array.isArray(newState.favouritePhotos) && newState.favouritePhotos.indexOf(photoId) >= 0) {
-      // Remove Photo from Favourites List.
-      favouritePhotos = newState.favouritePhotos.filter((x) => x !== photoId);
-    } else {
-      // Add Photo to Favourites List.
-      favouritePhotos = [ ...state.favouritePhotos, photoId];
-    }
-
-    newState.favouritePhotos = [...favouritePhotos];
-    setState(newState);
-  };
-
-
-  // can be used when the user selects a photo.
-  const setPhotoSelected = (photo) => {
-    const newState = { ...state };
-    newState.photoSelected = true;
-    newState.selectedPhoto = photo;
-    setState(newState);
-  };
-
-  
-  // can be used to close the modal.
-  const onClosePhotoDetailsModal = () => {
-    const newState = { ...state };
-    newState.photoSelected = false;
-    newState.selectedPhoto = {};
-    setState(newState);
-  };
-
-  return {
-    state,
-    updateToFavPhotoIds,
-    setPhotoSelected,
-    onClosePhotoDetailsModal,
-  };
+  return {state, dispatch};
 };
 
 export default useApplicationData;

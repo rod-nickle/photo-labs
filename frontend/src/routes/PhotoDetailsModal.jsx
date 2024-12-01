@@ -3,10 +3,12 @@ import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
+import { ACTIONS } from 'hooks/useApplicationData';
 
 const PhotoDetailsModal = (props) => {
-  const { show, photo, favouritePhotos, updateToFavPhotoIds, onClosePhotoDetailsModal } = props;
+  const { dispatch, show, photo, favouritePhotos } = props;
   const className = "photo-details-modal " + (show ? "photo-details-modal__show" : "photo-details-modal__hide");
+  const dispatchType = ACTIONS.REMOVE_PHOTO_DATA;
 
   let photoId = null;
   let photoUrl = "";
@@ -16,7 +18,7 @@ const PhotoDetailsModal = (props) => {
   let photographerCountry = "";
   let similarPhotos = [];
 
-  if (Object.keys(photo).length > 0) {
+  if (photo && Object.keys(photo).length > 0) {
     photoId = photo.id;
     photoUrl = photo.urls.regular;
     photographerProfile = photo.user.profile;
@@ -26,17 +28,14 @@ const PhotoDetailsModal = (props) => {
     similarPhotos = Object.values(photo.similar_photos);
   }
 
-  const handleClick = () => {
-    onClosePhotoDetailsModal();
-  };
- 
   return (
     <div className={className} >
-      <button className="photo-details-modal__close-button" onClick={handleClick}>
+      
+      <button className="photo-details-modal__close-button" onClick={() => dispatch({ type: dispatchType })} >
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <figure className="photo-details-modal__header">
-        <PhotoFavButton photoId={photoId} favouritePhotos={favouritePhotos} updateToFavPhotoIds={updateToFavPhotoIds} />
+        <PhotoFavButton dispatch={dispatch} photoId={photoId} favouritePhotos={favouritePhotos} />
         <img className="photo-details-modal__image" src={photoUrl} alt="Photo" />
         <figcaption className="photo-details-modal__photographer-details">
           <img className="photo-details-modal__photographer-profile" src={photographerProfile} alt={`Profile picture of ${photographerName}`} />
@@ -47,7 +46,7 @@ const PhotoDetailsModal = (props) => {
         </figcaption>
       </figure>
       <div className="photo-details-modal__images">
-        <PhotoList photos={similarPhotos} favouritePhotos={favouritePhotos} updateToFavPhotoIds={updateToFavPhotoIds} />
+        <PhotoList dispatch={dispatch} photos={similarPhotos} favouritePhotos={favouritePhotos}  />
       </div>
 
     </div>

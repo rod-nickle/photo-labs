@@ -13,29 +13,21 @@ const App = () => {
     selectedPhoto: {},
   };
 
-  const {
-    state,
-    updateToFavPhotoIds,
-    setPhotoSelected,
-    onClosePhotoDetailsModal,
-  } = useApplicationData(defaultState);
-
+  const {state, dispatch} = useApplicationData(defaultState);
 
   return (
     <div className="App">
       <HomeRoute 
+        dispatch={dispatch}
         topics={topics} 
         photos={photos} 
         favouritePhotos={state.favouritePhotos} 
-        updateToFavPhotoIds={updateToFavPhotoIds} 
-        setPhotoSelected={setPhotoSelected} 
       />
       <PhotoDetailsModal 
+        dispatch={dispatch}
         show={state.photoSelected} 
         photo={state.selectedPhoto} 
         favouritePhotos={state.favouritePhotos} 
-        updateToFavPhotoIds={updateToFavPhotoIds} 
-        onClosePhotoDetailsModal={onClosePhotoDetailsModal}
       />
     </div>
   );
