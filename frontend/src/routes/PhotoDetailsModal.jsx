@@ -19,7 +19,6 @@ const PhotoDetailsModal = (props) => {
   let similarPhotos = [];
 
   if (photo && Object.keys(photo).length > 0) {
-    console.log(photo);
     photoId = photo.id;
     photoUrl = photo.urls.regular;
     photographerProfile = photo.user.profile;

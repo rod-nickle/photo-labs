@@ -5,8 +5,16 @@ export const ACTIONS = {
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
   SELECT_PHOTO: 'SELECT_PHOTO',
   DESELECT_PHOTO: 'DELECT_PHOTO',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
 }
 
+/**
+ * 
+ * @param {*} state 
+ * @param {*} action 
+ * @returns 
+ */
 function reducer(state, action) {
   
   switch (action.type) {
@@ -26,12 +34,20 @@ function reducer(state, action) {
     
     case ACTIONS.SELECT_PHOTO: {
       // Set the Photo data for the Modal.
-      return { ...state, photoSelected: true, selectedPhoto: action.value };
+      return { ...state, isPhotoSelected: true, selectedPhoto: action.value };
     }
     
     case ACTIONS.DESELECT_PHOTO: {
       // Remove the Photo data from the Modal.
-      return { ...state, photoSelected: false, selectedPhoto: {} };
+      return { ...state, isPhotoSelected: false, selectedPhoto: {} };
+    }
+
+    case ACTIONS.SET_PHOTO_DATA: {
+      return { ...state, photoData: action.payload }
+    }
+
+  case ACTIONS.SET_TOPIC_DATA: {
+      return { ...state, topicData: action.payload }
     }
 
     default:
@@ -45,16 +61,16 @@ function reducer(state, action) {
 
 /**
  * 
- * @param {structure} defaultState 
- * const state = {
- * favouritePhotos: {},
- * photoSelected: false,
- * photoDetails: {},
+ * @param {structure} initialState 
+ * {
+ * favouritePhotos: Array,
+ * isPhotoSelected: Boolean,
+ * photoDetails: Object,
  * }
  * @returns 
  */
-const useApplicationData = (defaultState) => {
-  const [state, dispatch] = useReducer(reducer, defaultState);
+const useApplicationData = (initialState) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return {state, dispatch};
 };
