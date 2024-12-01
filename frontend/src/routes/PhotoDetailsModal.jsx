@@ -8,7 +8,7 @@ import { ACTIONS } from 'hooks/useApplicationData';
 const PhotoDetailsModal = (props) => {
   const { dispatch, show, photo, favouritePhotos } = props;
   const className = "photo-details-modal " + (show ? "photo-details-modal__show" : "photo-details-modal__hide");
-  const dispatchType = ACTIONS.REMOVE_PHOTO_DATA;
+  const dispatchType = ACTIONS.DESELECT_PHOTO;
 
   let photoId = null;
   let photoUrl = "";
@@ -19,6 +19,7 @@ const PhotoDetailsModal = (props) => {
   let similarPhotos = [];
 
   if (photo && Object.keys(photo).length > 0) {
+    console.log(photo);
     photoId = photo.id;
     photoUrl = photo.urls.regular;
     photographerProfile = photo.user.profile;

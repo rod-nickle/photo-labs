@@ -3,8 +3,8 @@ import { useReducer } from "react";
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
-  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  REMOVE_PHOTO_DATA: 'REMOVE_PHOTO_DATA',
+  SELECT_PHOTO: 'SELECT_PHOTO',
+  DESELECT_PHOTO: 'DELECT_PHOTO',
 }
 
 function reducer(state, action) {
@@ -12,7 +12,9 @@ function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED: {
       // Add Photo to Favourites List if not already there.
-      if (!state.favouritePhotos.includes(action.value)) {
+      if (Array.isArray(state.favouritePhotos) && state.favouritePhotos.includes(action.value)) {
+        return { ...state };
+      } else {
         return { ...state, favouritePhotos: [...state.favouritePhotos, action.value] };
       }
     }
@@ -22,12 +24,12 @@ function reducer(state, action) {
       return { ...state, favouritePhotos: state.favouritePhotos.filter((x) => x !== action.value) };
     }
     
-    case ACTIONS.SET_PHOTO_DATA: {
+    case ACTIONS.SELECT_PHOTO: {
       // Set the Photo data for the Modal.
       return { ...state, photoSelected: true, selectedPhoto: action.value };
     }
     
-    case ACTIONS.REMOVE_PHOTO_DATA: {
+    case ACTIONS.DESELECT_PHOTO: {
       // Remove the Photo data from the Modal.
       return { ...state, photoSelected: false, selectedPhoto: {} };
     }
@@ -40,7 +42,10 @@ function reducer(state, action) {
 };
 
 
+
 /**
+ * 
+ * @param {structure} defaultState 
  * const state = {
  * favouritePhotos: {},
  * photoSelected: false,

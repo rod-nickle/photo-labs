@@ -5,7 +5,7 @@ import { ACTIONS } from 'hooks/useApplicationData';
 
 const PhotoListItem = (props) => {
   const { dispatch, photo, favouritePhotos } = props;
-  const dispatchType = ACTIONS.SET_PHOTO_DATA;
+  const dispatchType = ACTIONS.SELECT_PHOTO;
 
   return (
     <figure className="photo-list__item">
