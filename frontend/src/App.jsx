@@ -9,6 +9,7 @@ const App = () => {
     favouritePhotos: [],
     isPhotoSelected: false,
     selectedPhoto: {},
+    selectedTopicId: null,
     photoData: [],
     topicData: [],
   };
@@ -18,15 +19,24 @@ const App = () => {
   useEffect(() => {
     fetch('/api/photos')
       .then(res => res.json())
-      .then(data => {dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })});
+      .then(data => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
     }, []);
     
   useEffect(() => {
     fetch('/api/topics')
       .then(res => res.json())
-      .then(data => {dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data })});
+      .then(data => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
   }, []);
 
+  useEffect(() => {
+    if (state.selectedTopicId) {
+      fetch(`/api/topics/photos/${state.selectedTopicId}`)
+        .then(res => res.json())
+        .then(data => {dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })});
+    }
+  }, [state.selectedTopicId]);
+
+  
   return (
     <div className="App">
       <HomeRoute 

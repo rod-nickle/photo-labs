@@ -7,6 +7,7 @@ export const ACTIONS = {
   DESELECT_PHOTO: 'DELECT_PHOTO',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
 }
 
 /**
@@ -43,11 +44,18 @@ function reducer(state, action) {
     }
 
     case ACTIONS.SET_PHOTO_DATA: {
-      return { ...state, photoData: action.payload }
+      // Fetch Photo data from the database.
+      return { ...state, photoData: action.payload };
     }
 
-  case ACTIONS.SET_TOPIC_DATA: {
-      return { ...state, topicData: action.payload }
+    case ACTIONS.SET_TOPIC_DATA: {
+      // Fetch Topic data from the database.
+      return { ...state, topicData: action.payload };
+    }
+
+    case ACTIONS.GET_PHOTOS_BY_TOPICS: {
+      // Fetch Photo by Topic from the database.
+      return { ...state, selectedTopicId: action.topicId };
     }
 
     default:
