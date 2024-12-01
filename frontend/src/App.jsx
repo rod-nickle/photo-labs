@@ -21,11 +21,11 @@ const App = () => {
       .then(data => {dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })});
     }, []);
     
-    useEffect(() => {
-      fetch('/api/topics')
-        .then(res => res.json())
-        .then(data => {dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data })});
-      }, []);
+  useEffect(() => {
+    fetch('/api/topics')
+      .then(res => res.json())
+      .then(data => {dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data })});
+  }, []);
 
   return (
     <div className="App">

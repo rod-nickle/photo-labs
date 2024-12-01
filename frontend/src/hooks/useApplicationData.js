@@ -20,21 +20,21 @@ function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED: {
       // Add Photo to Favourites List if not already there.
-      if (Array.isArray(state.favouritePhotos) && state.favouritePhotos.includes(action.value)) {
+      if (Array.isArray(state.favouritePhotos) && state.favouritePhotos.includes(action.photoId)) {
         return { ...state };
       } else {
-        return { ...state, favouritePhotos: [...state.favouritePhotos, action.value] };
+        return { ...state, favouritePhotos: [...state.favouritePhotos, action.photoId] };
       }
     }
        
     case ACTIONS.FAV_PHOTO_REMOVED: {
       // Remove Photo from Favourites List.
-      return { ...state, favouritePhotos: state.favouritePhotos.filter((x) => x !== action.value) };
+      return { ...state, favouritePhotos: state.favouritePhotos.filter((x) => x !== action.photoId) };
     }
     
     case ACTIONS.SELECT_PHOTO: {
       // Set the Photo data for the Modal.
-      return { ...state, isPhotoSelected: true, selectedPhoto: action.value };
+      return { ...state, isPhotoSelected: true, selectedPhoto: action.photo };
     }
     
     case ACTIONS.DESELECT_PHOTO: {

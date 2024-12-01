@@ -10,7 +10,7 @@ const PhotoListItem = (props) => {
   return (
     <figure className="photo-list__item">
       <PhotoFavButton dispatch={dispatch} photoId={photo.id} favouritePhotos={favouritePhotos} />
-      <img className="photo-list__image" src={photo.urls.regular} alt="Photo" onClick={() => dispatch({ type: dispatchType, value: photo })} />
+      <img className="photo-list__image" src={photo.urls.regular} alt="Photo" onClick={() => dispatch({ type: dispatchType, photo: photo })} />
       <figcaption className="photo-list__user-details">
         <img className="photo-list__user-profile" src={photo.user.profile} alt={`Profile picture of ${photo.user.name}`} />
         <section>

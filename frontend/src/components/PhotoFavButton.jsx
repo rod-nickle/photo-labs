@@ -14,7 +14,7 @@ function PhotoFavButton(props) {
   } 
 
   return (
-    <div className="photo-list__fav-icon" onClick={() => dispatch({ type: dispatchType, value: photoId })} >
+    <div className="photo-list__fav-icon" onClick={() => dispatch({ type: dispatchType, photoId: photoId })} >
       <div className="photo-list__fav-icon-svg">
         <FavIcon selected={selected}/>
       </div>
