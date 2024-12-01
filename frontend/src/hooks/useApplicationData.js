@@ -9,42 +9,27 @@ export const ACTIONS = {
 
 function reducer(state, action) {
   
-  // console.log(state);
-  // console.log(action);
-
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED: {
-      // Add Photo to Favourites List.
-      const newState = { ...state };
-      let favouritePhotos;
-      favouritePhotos = [ ...state.favouritePhotos, action.value]; 
-      newState.favouritePhotos = [...favouritePhotos];
-      return newState
+      // Add Photo to Favourites List if not already there.
+      if (!state.favouritePhotos.includes(action.value)) {
+        return { ...state, favouritePhotos: [...state.favouritePhotos, action.value] };
+      }
     }
- 
+       
     case ACTIONS.FAV_PHOTO_REMOVED: {
       // Remove Photo from Favourites List.
-      const newState = { ...state };
-      let favouritePhotos;
-      if (Array.isArray(newState.favouritePhotos) && state.favouritePhotos.includes(action.value)) {
-        favouritePhotos = newState.favouritePhotos.filter((x) => x !== action.value);
-      }
-      newState.favouritePhotos = [...favouritePhotos];
-      return newState;
+      return { ...state, favouritePhotos: state.favouritePhotos.filter((x) => x !== action.value) };
     }
     
     case ACTIONS.SET_PHOTO_DATA: {
-      const newState = { ...state };
-      newState.photoSelected = true;
-      newState.selectedPhoto = action.value;
-      return newState;
+      // Set the Photo data for the Modal.
+      return { ...state, photoSelected: true, selectedPhoto: action.value };
     }
     
     case ACTIONS.REMOVE_PHOTO_DATA: {
-      const newState = { ...state };
-      newState.photoSelected = false;
-      newState.selectedPhoto = {};
-      return newState;
+      // Remove the Photo data from the Modal.
+      return { ...state, photoSelected: false, selectedPhoto: {} };
     }
 
     default:
