@@ -4,6 +4,11 @@ import FavBadge from './FavBadge';
 import TopicList from './TopicList';
 import { ACTIONS } from 'hooks/useApplicationData';
 
+/**
+ * Navigation Bar Component
+ * @param {*} props 
+ * @returns JSX Element
+ */
 const TopNavigation = (props) => {
   const { dispatch, topics, isFavPhotoExist } = props;
   let dispatchType = ACTIONS.GET_PHOTOS_BY_TOPICS;
