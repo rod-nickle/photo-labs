@@ -3,6 +3,11 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from './PhotoFavButton';
 import { ACTIONS } from 'hooks/useApplicationData';
 
+/**
+ * Photo List Item Component - The specific photo in the Photo List Component
+ * @param {*} props 
+ * @returns JSX Element
+ */
 const PhotoListItem = (props) => {
   const { dispatch, photo, favouritePhotos } = props;
   const dispatchType = ACTIONS.SELECT_PHOTO;

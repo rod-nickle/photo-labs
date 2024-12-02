@@ -1,5 +1,6 @@
 import { useReducer } from "react";
 
+// Actions for our Reducer.
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
@@ -11,10 +12,10 @@ export const ACTIONS = {
 }
 
 /**
- * 
- * @param {*} state 
- * @param {*} action 
- * @returns 
+ * Reducer for our Custom Hook. Sets the state based on various actions throughout our App.
+ * @param {object} state Global state
+ * @param {object} action Object to pass data into the reducer. 
+ * @returns {object} The new global state
  */
 function reducer(state, action) {
   
@@ -69,13 +70,16 @@ function reducer(state, action) {
 
 /**
  * 
- * @param {structure} initialState 
+ * @param {object} initialState 
  * {
  * favouritePhotos: Array,
  * isPhotoSelected: Boolean,
- * photoDetails: Object,
+ * selectedPhoto: {},
+ * selectedTopicId: null,
+ * photoData: [],
+ * topicData: [],
  * }
- * @returns 
+ * @returns {} The Global state and Dispatch function to set the state.
  */
 const useApplicationData = (initialState) => {
   const [state, dispatch] = useReducer(reducer, initialState);

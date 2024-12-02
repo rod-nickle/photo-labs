@@ -5,6 +5,11 @@ import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 import { ACTIONS } from 'hooks/useApplicationData';
 
+/**
+ * Modal window component to view details about a Photo.
+ * @param {*} props 
+ * @returns JSX Element
+ */
 const PhotoDetailsModal = (props) => {
   const { dispatch, show, photo, favouritePhotos } = props;
   const className = "photo-details-modal " + (show ? "photo-details-modal__show" : "photo-details-modal__hide");

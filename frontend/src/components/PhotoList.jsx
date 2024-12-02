@@ -2,6 +2,11 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from './PhotoListItem';
 
+/**
+ * Photo List Component
+ * @param {*} props 
+ * @returns JSX Element
+ */
 const PhotoList = (props) => {
   const { dispatch, photos, favouritePhotos } = props;
 

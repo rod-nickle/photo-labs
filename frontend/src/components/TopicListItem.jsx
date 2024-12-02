@@ -2,6 +2,11 @@ import React from "react";
 import "../styles/TopicListItem.scss";
 import { ACTIONS } from 'hooks/useApplicationData';
 
+/**
+ * Topic List Item Component - The specific topic in the Topic List Component
+ * @param {*} props 
+ * @returns JSX Element
+ */
 const TopicListItem = (props) => {
   const { dispatch, topicId, title } = props;
   let dispatchType = ACTIONS.GET_PHOTOS_BY_TOPICS;

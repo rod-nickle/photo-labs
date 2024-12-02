@@ -2,6 +2,11 @@ import React from "react";
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
+/**
+ * Topic List Component
+ * @param {*} props 
+ * @returns JSX Element
+ */
 const TopicList = (props) => {
   const { dispatch, topics } = props;
 

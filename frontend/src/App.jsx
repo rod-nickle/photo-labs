@@ -4,6 +4,10 @@ import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import useApplicationData, {ACTIONS } from 'hooks/useApplicationData';
 
+/**
+ * This is our App!
+ * @returns The PhotoLabs App
+ */
 const App = () => {
   const initialState = {
     favouritePhotos: [],
@@ -14,26 +18,30 @@ const App = () => {
     topicData: [],
   };
 
+  // Custom Hook to manage the Application's State.
   const {state, dispatch} = useApplicationData(initialState);
 
+  // Initial load of Photos.
   useEffect(() => {
     fetch('/api/photos')
       .then(res => res.json())
       .then(data => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
     }, []);
     
+  // Initial load of Topics.
   useEffect(() => {
     fetch('/api/topics')
       .then(res => res.json())
       .then(data => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
   }, []);
 
+  // When the Topic changes, re-load the photos.
+  // Also handles clicking on the Logo. This will re-fetch all photos.
   useEffect(() => {
-    if (state.selectedTopicId) {
-      fetch(`/api/topics/photos/${state.selectedTopicId}`)
-        .then(res => res.json())
-        .then(data => {dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })});
-    }
+    const url = state.selectedTopicId ? `/api/topics/photos/${state.selectedTopicId}` : `/api/photos`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })});
   }, [state.selectedTopicId]);
 
   
