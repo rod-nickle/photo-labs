@@ -1,5 +1,5 @@
 # Photolabs Project
-PhotoLabs is a full stack web application build with React that allows users to view photos.
+PhotoLabs is a React-based single-page application (SPA) that allows users to view photos in different contexts.
 
 ## Final Product
 
