@@ -35,8 +35,12 @@ function reducer(state, action) {
     }
     
     case ACTIONS.SELECT_PHOTO: {
-      // Set the Photo data for the Modal.
-      return { ...state, isPhotoSelected: true, selectedPhoto: action.photo };
+      // Set the Photo data for the Modal if not already selected.
+      if (state.isPhotoSelected) {
+        return { ...state };
+      } else {
+        return { ...state, isPhotoSelected: true, selectedPhoto: action.photo };
+      }
     }
     
     case ACTIONS.DESELECT_PHOTO: {

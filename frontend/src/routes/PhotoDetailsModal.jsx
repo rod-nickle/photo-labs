@@ -12,7 +12,7 @@ import { ACTIONS } from 'hooks/useApplicationData';
  */
 const PhotoDetailsModal = (props) => {
   const { dispatch, show, photo, favouritePhotos } = props;
-  const className = "photo-details-modal " + (show ? "photo-details-modal__show" : "photo-details-modal__hide");
+  const className = show ? "photo-details-modal__show" : "photo-details-modal__hide";
   const dispatchType = ACTIONS.DESELECT_PHOTO;
 
   let photoId = null;
@@ -33,27 +33,27 @@ const PhotoDetailsModal = (props) => {
     similarPhotos = Object.values(photo.similar_photos);
   }
 
-  return (
+  return (    
     <div className={className} >
-      
-      <button className="photo-details-modal__close-button" onClick={() => dispatch({ type: dispatchType })} >
-        <img src={closeSymbol} alt="close symbol" />
-      </button>
-      <figure className="photo-details-modal__header">
-        <PhotoFavButton dispatch={dispatch} photoId={photoId} favouritePhotos={favouritePhotos} />
-        <img className="photo-details-modal__image" src={photoUrl} alt="Photo" />
-        <figcaption className="photo-details-modal__photographer-details">
-          <img className="photo-details-modal__photographer-profile" src={photographerProfile} alt={`Profile picture of ${photographerName}`} />
-          <section>
-            <p className="photo-details-modal__photographer-info">{photographerName}</p>
-            <p className="photo-details-modal__photographer-location"> {photographerCity}, {photographerCountry} </p>
-          </section>
-        </figcaption>
-      </figure>
-      <div className="photo-details-modal__images">
-        <PhotoList dispatch={dispatch} photos={similarPhotos} favouritePhotos={favouritePhotos}  />
+      <div className="photo-details-modal">
+        <button className="photo-details-modal__close-button" onClick={() => dispatch({ type: dispatchType })} >
+          <img src={closeSymbol} alt="close symbol" />
+        </button>
+        <figure className="photo-details-modal__header">
+          <PhotoFavButton dispatch={dispatch} photoId={photoId} favouritePhotos={favouritePhotos} />
+          <img className="photo-details-modal__image" src={photoUrl} alt="Photo" />
+          <figcaption className="photo-details-modal__photographer-details">
+            <img className="photo-details-modal__photographer-profile" src={photographerProfile} alt={`Profile picture of ${photographerName}`} />
+            <section>
+              <p className="photo-details-modal__photographer-info">{photographerName}</p>
+              <p className="photo-details-modal__photographer-location"> {photographerCity}, {photographerCountry} </p>
+            </section>
+          </figcaption>
+        </figure>
+        <div className="photo-details-modal__images">
+          <PhotoList dispatch={dispatch} photos={similarPhotos} favouritePhotos={favouritePhotos}  />
+        </div>
       </div>
-
     </div>
   )
 };
