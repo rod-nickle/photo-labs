@@ -9,6 +9,7 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  FILTER_FAVOURITE_PHOTOS: 'FILTER_FAVOURITE_PHOTOS',
 }
 
 /**
@@ -61,6 +62,15 @@ function reducer(state, action) {
     case ACTIONS.GET_PHOTOS_BY_TOPICS: {
       // Fetch Photo by Topic from the database.
       return { ...state, selectedTopicId: action.topicId };
+    }
+
+    case ACTIONS.FILTER_FAVOURITE_PHOTOS: {
+      console.log("Filter Favourites clicked!");
+      if (state.isPhotosFilteredByFavourite) {
+        return { ...state };
+      } else {
+        return { ...state };
+      }
     }
 
     default:

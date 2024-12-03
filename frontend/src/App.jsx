@@ -14,6 +14,7 @@ const App = () => {
     isPhotoSelected: false,
     selectedPhoto: {},
     selectedTopicId: null,
+    isPhotosFilteredByFavourite: false,
     photoData: [],
     topicData: [],
   };

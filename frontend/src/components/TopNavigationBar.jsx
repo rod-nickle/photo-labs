@@ -17,7 +17,7 @@ const TopNavigation = (props) => {
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo" onClick={() => dispatch({ type: dispatchType })}>PhotoLabs</span>
       <TopicList dispatch={dispatch} topics={topics} />
-      <FavBadge isFavPhotoExist={isFavPhotoExist} />
+      <FavBadge dispatch={dispatch} isFavPhotoExist={isFavPhotoExist} />
     </div>
   )
 }
