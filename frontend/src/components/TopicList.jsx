@@ -8,12 +8,20 @@ import TopicListItem from "./TopicListItem";
  * @returns JSX Element
  */
 const TopicList = (props) => {
-  const { dispatch, topics } = props;
+  const { dispatch, topics, selectedTopicId } = props;
 
   return (
     <div className="top-nav-bar__topic-list">
       {topics.map((topic) => {
-        return <TopicListItem key={topic.id} dispatch={dispatch} topicId={topic.id} title={topic.title} />;
+        return (
+          <TopicListItem 
+            key={topic.id}
+            dispatch={dispatch}
+            topicId={topic.id}
+            title={topic.title}
+            selectedTopicId={selectedTopicId}
+          />
+        );
       })}
     </div>
   );

@@ -9,12 +9,12 @@ import { ACTIONS } from 'hooks/useApplicationData';
  * @returns JSX element
  */
 const FavBadge = (props) => {
-  const { dispatch, isFavPhotoExist } = props;
+  const { dispatch, isFavPhotoExist, isPhotosFilteredByFavourite } = props;
   let dispatchType = ACTIONS.FILTER_FAVOURITE_PHOTOS;
 
   return (
     <div className='fav-badge' onClick={() => dispatch({ type: dispatchType })} >
-      <FavIcon displayAlert={!!isFavPhotoExist} selected={!!isFavPhotoExist} />
+      <FavIcon displayAlert={!!isFavPhotoExist} selected={!!isFavPhotoExist} isPhotosFilteredByFavourite={!!isPhotosFilteredByFavourite}/>
     </div>
   ) 
 };
