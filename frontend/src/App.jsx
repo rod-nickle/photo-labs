@@ -16,6 +16,8 @@ const App = () => {
     selectedTopicId: null,
     photoData: [],
     topicData: [],
+    isPhotosFilteredByFavourite: false,
+    savedPhotoDataBeforeFilter: [],
   };
 
   // Custom Hook to manage the Application's State.
@@ -52,6 +54,8 @@ const App = () => {
         topics={state.topicData} 
         photos={state.photoData} 
         favouritePhotos={state.favouritePhotos} 
+        selectedTopicId={state.selectedTopicId}
+        isPhotosFilteredByFavourite={state.isPhotosFilteredByFavourite}
       />
       <PhotoDetailsModal 
         dispatch={dispatch}

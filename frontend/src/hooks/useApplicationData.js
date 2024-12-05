@@ -9,6 +9,7 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  FILTER_FAVOURITE_PHOTOS: 'FILTER_FAVOURITE_PHOTOS',
 }
 
 /**
@@ -50,17 +51,41 @@ function reducer(state, action) {
 
     case ACTIONS.SET_PHOTO_DATA: {
       // Fetch Photo data from the database.
-      return { ...state, photoData: action.payload };
+      return { ...state, photoData: action.payload, isPhotosFilteredByFavourite: false };
     }
 
     case ACTIONS.SET_TOPIC_DATA: {
       // Fetch Topic data from the database.
-      return { ...state, topicData: action.payload };
+      return { ...state, topicData: action.payload, isPhotosFilteredByFavourite: false };
     }
 
     case ACTIONS.GET_PHOTOS_BY_TOPICS: {
       // Fetch Photo by Topic from the database.
-      return { ...state, selectedTopicId: action.topicId };
+      return { ...state, selectedTopicId: action.topicId, isPhotosFilteredByFavourite: false };
+    }
+
+    case ACTIONS.FILTER_FAVOURITE_PHOTOS: {
+      // Toggle the filtering of Favourite Photos.
+      if (state.isPhotosFilteredByFavourite) {
+        const savedPhotoDataBeforeFilter = [ ...state.savedPhotoDataBeforeFilter ];
+
+        return { 
+          ...state, 
+          isPhotosFilteredByFavourite: false,
+          photoData: savedPhotoDataBeforeFilter,
+          savedPhotoDataBeforeFilter: [],
+         };
+      } else {
+        const photoData = [ ... state.photoData ];
+        const favouritePhotos = [ ...state.favouritePhotos ];
+        const filteredPhotos = photoData.filter(photo => favouritePhotos.some(id => id === photo.id));
+
+        return { 
+          ...state, 
+          isPhotosFilteredByFavourite: true, 
+          photoData: filteredPhotos,
+          savedPhotoDataBeforeFilter: photoData };
+      }
     }
 
     default:

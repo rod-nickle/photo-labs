@@ -8,11 +8,12 @@ import { ACTIONS } from 'hooks/useApplicationData';
  * @returns JSX Element
  */
 const TopicListItem = (props) => {
-  const { dispatch, topicId, title } = props;
-  let dispatchType = ACTIONS.GET_PHOTOS_BY_TOPICS;
+  const { dispatch, topicId, title, selectedTopicId } = props;
+  const dispatchType = ACTIONS.GET_PHOTOS_BY_TOPICS;
+  const className = "topic-list__item" + (topicId === selectedTopicId ? " topic-list__item_selected" : "");
 
   return (
-    <div className="topic-list__item">
+    <div className={className}>
       <span onClick={() => dispatch({ type: dispatchType, topicId: topicId })} >{title} </span>
     </div>
   );

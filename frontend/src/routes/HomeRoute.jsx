@@ -9,13 +9,23 @@ import PhotoList from '../components/PhotoList';
  * @returns JSX Element
  */
 const HomeRoute = (props) => {
-  const { dispatch, topics, photos, favouritePhotos } = props;
+  const { dispatch, topics, photos, selectedTopicId, favouritePhotos, isPhotosFilteredByFavourite } = props;
   const isFavPhotoExist = Array.isArray(favouritePhotos) && favouritePhotos.length > 0;
 
   return (
     <div className="home-route">
-      <TopNavigation dispatch={dispatch} topics={topics} isFavPhotoExist={isFavPhotoExist} />
-      <PhotoList dispatch={dispatch} photos={photos} favouritePhotos={favouritePhotos} />
+      <TopNavigation 
+        dispatch={dispatch}
+        topics={topics}
+        selectedTopicId={selectedTopicId} 
+        isFavPhotoExist={isFavPhotoExist}
+        isPhotosFilteredByFavourite={isPhotosFilteredByFavourite}
+      />
+      <PhotoList 
+        dispatch={dispatch}
+        photos={photos}
+        favouritePhotos={favouritePhotos}
+      />
     </div>
   )
 }
